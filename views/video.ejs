@@ -1,0 +1,129 @@
+<style>
+    video {
+        display: block;
+        margin: 20px auto;
+        width: 70%;
+        max-width: 800px;
+    }
+
+    body {
+        background-color: whitesmoke;
+    }
+
+    .navbar {
+        background-color: gray;
+        /* Black background */
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        /* Center the navbar links */
+        padding: 10px 0;
+    }
+
+    .navbar a {
+        color: black;
+        /* White text */
+        text-decoration: underline;
+        padding: 10px 20px;
+        font-size: 18px;
+        transition: 0.3s;
+        /* Smooth hover effect */
+    }
+
+    .navbar a:hover {
+        background-color: #444;
+        /* Dark grey hover effect */
+        border-radius: 5px;
+        /* Rounded edges */
+    }
+
+    .dark-mode nav {
+        background-color: #222;
+        /* Darker background for balance */
+    }
+
+    .dark-mode #theme-toggle {
+        background: #444;
+        /* Dark gray instead of white */
+        color: white;
+        /* border: 1px solid #666; */
+        /* Softer border */
+    }
+
+
+    body {
+        background-color: white;
+        color: black;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .dark-mode {
+        background-color: gray;
+        color: white;
+    }
+
+    #theme-toggle {
+        background: gray;
+        /* border: 1px solid black; */
+        color: black;
+        font-size: 18px;
+        /* padding: 5px 10px; */
+        cursor: pointer;
+    }
+
+    .dark-mode #theme-toggle {
+        background: gray;
+        color: black;
+        /* border: 1px solid white; */
+    }
+
+    body {
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+
+    /* #volume {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    } */
+</style>
+
+<div class="navbar">
+    <a href="/">Home</a>
+    <a href="/video1">Educational</a>
+    <a href="/video2">Montage</a>
+    <a href="/video3">Animation</a>
+    <button id="theme-toggle">Toggle Theme</button>
+</div>
+
+<!-- <input type="range" id="volume" min="0" max="1" step="0.1" value="1"> -->
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const themeToggle = document.getElementById("theme-toggle");
+        const body = document.body;
+
+        if (localStorage.getItem("theme") === "dark") {
+            body.classList.add("dark-mode");
+        }
+
+        themeToggle.addEventListener("click", function () {
+            body.classList.toggle("dark-mode");
+
+            if (body.classList.contains("dark-mode")) {
+                localStorage.setItem("theme", "dark");
+            } else {
+                localStorage.setItem("theme", "light");
+            }
+        });
+    });
+
+</script>
+
+
+<video controls>
+    <source src="<%= videoSource %>" type="video/mp4">
+    Your browser does not support HTML5 video.
+</video>
